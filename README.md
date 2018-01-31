@@ -1,8 +1,6 @@
 # Character Level CNN in Keras
 
-![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
-
-This repository contains my implementation using Keras for Character-level Convolutional Neural Networks for Text Classification. It can be used to reproduce the results in the following article on AG's News Topic Classification Dataset:
+This repository contains a Keras implementation for Character-level Convolutional Neural Networks for Text Classification. It can be used to reproduce the results on AG's News Topic Classification Dataset in the following article:
 > Xiang Zhang, Junbo Zhao, Yann LeCun. [Character-level Convolutional Networks for Text Classification](http://arxiv.org/abs/1509.01626). Advances in Neural Information Processing Systems 28 (NIPS 2015)
 
 ## Installation
@@ -22,9 +20,3 @@ $ pip install -r requirements.txt
 ```sh
 $ python main.py
 ```
-
-## License
-
-Copyright (c) 2016 Mohammed Jabreel
-
-The source code is distributed under the MIT license.
