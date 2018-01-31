@@ -62,4 +62,4 @@ class CharCNN(object):
                        batch_size=batch_size)
 
     def test(self):
-        self.model.evaluate()
+        self.model.evaluate(testing_inputs, testing_labels, batch_size=batch_size, verbose=1)
