@@ -4,9 +4,22 @@ import csv
 
 
 class Data(object):
+    """
+    Class to handle loading and processing of raw datasets.
+    """
     def __init__(self, data_source,
                  alphabet="abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}",
                  input_size=1014, batch_size=128, no_of_classes=4):
+        """
+        Initialization of a Data object.
+
+        Args:
+            data_source (str): Raw data file path
+            alphabet (str): Alphabet of characters to index
+            input_size (int): Size of input features
+            batch_size (int): Batch size
+            no_of_classes (int): Number of classes in data
+        """
         self.alphabet = alphabet
         self.alphabet_size = len(self.alphabet)
         self.dict = {}  # Maps each character to an integer
@@ -18,6 +31,12 @@ class Data(object):
         self.data_source = data_source
 
     def load_data(self):
+        """
+        Load raw data from the source file into data variable.
+
+        Returns: None
+
+        """
         data = []
         with open(self.data_source, 'r', encoding='utf-8') as f:
             rdr = csv.reader(f, delimiter=',', quotechar='"')
@@ -56,6 +75,13 @@ class Data(object):
         return np.asarray(batch_indices, dtype='int64'), np.asarray(classes)
 
     def get_all_data(self):
+        """
+        Return all loaded data from data variable.
+
+        Returns:
+            (np.ndarray) Data transformed from raw to indexed form with associated one-hot label.
+
+        """
         data_size = len(self.data)
         start_index = 0
         end_index = data_size
@@ -70,6 +96,16 @@ class Data(object):
         return np.asarray(batch_indices, dtype='int64'), np.asarray(classes)
 
     def str_to_indexes(self, s):
+        """
+        Convert a string to character indexes based on character dictionary.
+        
+        Args:
+            s (str): String to be converted to indexes
+
+        Returns:
+            (np.ndarray) Indexes of characters in s
+
+        """
         s = s.lower()
         m = len(s)
         n = min(m, self.length)

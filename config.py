@@ -1,4 +1,7 @@
 class DataConfig(object):
+    """
+    Parameters for dataset.
+    """
     alphabet = "abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}"
     alphabet_size = len(alphabet)
     input_size = 1014
@@ -8,6 +11,9 @@ class DataConfig(object):
 
 
 class CharCNNConfig(object):
+    """
+    Parameters for Character Level CNN model.
+    """
     embedding_size = 128
     conv_layers = [[256, 7, 3],
                    [256, 7, 3],
@@ -23,6 +29,9 @@ class CharCNNConfig(object):
 
 
 class TrainingConfig(object):
+    """
+    Parameters for training pipeline.
+    """
     base_rate = 1e-2
     momentum = 0.9
     decay_step = 15000

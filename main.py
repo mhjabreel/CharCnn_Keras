@@ -6,6 +6,7 @@ from config import TrainingConfig
 
 
 if __name__ == "__main__":
+    # Load configurations
     data_config = DataConfig()
     model_config = CharCNNConfig()
     training_config = TrainingConfig()
