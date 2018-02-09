@@ -7,7 +7,7 @@ from keras.layers import AlphaDropout
 from keras.callbacks import TensorBoard
 
 
-class ZhangCharCNN(object):
+class KimCharCNN(object):
     """
     Class to implement the Character Level Convolutional Neural Network (aka Time-delay Neural Network)
     as described in Kim et al., 2015 (https://arxiv.org/abs/1508.06615)
