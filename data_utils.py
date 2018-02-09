@@ -46,33 +46,7 @@ class Data(object):
                     txt = txt + " " + re.sub("^\s*(.-)\s*$", "%1", s).replace("\\n", "\n")
                 data.append((int(row[0]), txt))  # format: (label, text)
         self.data = np.array(data)
-        self.shuffled_data = self.data
-
-    def shuffle_data(self):
-        np.random.seed(42)
-        data_size = len(self.data)
-        shuffle_indices = np.random.permutation(np.arange(data_size))
-        self.shuffled_data = self.data[shuffle_indices]
-
-    def get_batch(self, batch_num=0):
-        data_size = len(self.data)
-        start_index = batch_num * self.batch_size
-        end_index = min((batch_num + 1) * self.batch_size, data_size)
-        return self.shuffled_data[start_index:end_index]
-
-    def get_batch_to_indices(self, batch_num=0):
-        data_size = len(self.data)
-        start_index = batch_num * self.batch_size
-        end_index = data_size if self.batch_size == 0 else min((batch_num + 1) * self.batch_size, data_size)
-        batch_texts = self.shuffled_data[start_index:end_index]
-        batch_indices = []
-        one_hot = np.eye(self.no_of_classes, dtype='int64')
-        classes = []
-        for c, s in batch_texts:
-            batch_indices.append(self.str_to_indexes(s))
-            c = int(c) - 1
-            classes.append(one_hot[c])
-        return np.asarray(batch_indices, dtype='int64'), np.asarray(classes)
+        print("Data loaded from " + self.data_source)
 
     def get_all_data(self):
         """
@@ -103,18 +77,14 @@ class Data(object):
             s (str): String to be converted to indexes
 
         Returns:
-            (np.ndarray) Indexes of characters in s
+            str2idx (np.ndarray): Indexes of characters in s
 
         """
         s = s.lower()
-        m = len(s)
-        n = min(m, self.length)
+        max_length = min(len(s), self.length)
         str2idx = np.zeros(self.length, dtype='int64')
-        for i in range(1, n + 1):
+        for i in range(1, max_length + 1):
             c = s[-i]
             if c in self.dict:
                 str2idx[i - 1] = self.dict[c]
         return str2idx
-
-    def get_length(self):
-        return len(self.data)
