@@ -1,13 +1,14 @@
-from keras.models import Model, Sequential
-from keras.layers import Input, Dense, Flatten, Activation
+from keras.models import Model
+from keras.layers import Input, Dense, Flatten
 from keras.layers import Convolution1D
 from keras.layers import MaxPooling1D
 from keras.layers import Embedding
 from keras.layers import ThresholdedReLU
 from keras.layers import Dropout
+from keras.callbacks import TensorBoard
 
 
-class CharCNN(object):
+class ZhangCharCNN(object):
     """
     Class to implement the Character Level Convolutional Neural Network for Text Classification,
     as described in Zhang et al., 2015 (http://arxiv.org/abs/1509.01626)
@@ -52,10 +53,8 @@ class CharCNN(object):
         """
         # Input layer
         inputs = Input(shape=(self.input_size,), name='sent_input', dtype='int64')
-
         # Embedding layers
         x = Embedding(self.alphabet_size + 1, self.embedding_size, input_length=self.input_size)(inputs)
-
         # Convolution layers
         for cl in self.conv_layers:
             x = Convolution1D(cl[0], cl[1])(x)
@@ -63,24 +62,23 @@ class CharCNN(object):
             if not cl[2] is None:
                 x = MaxPooling1D(cl[2])(x)
         x = Flatten()(x)
-
         # Fully connected layers
         for fl in self.fully_connected_layers:
             x = Dense(fl)(x)
             x = ThresholdedReLU(self.threshold)(x)
             x = Dropout(self.dropout_p)(x)
-
+        # Output layer
         predictions = Dense(self.num_of_classes, activation='softmax')(x)
-
+        # Build and compile model
         model = Model(inputs=inputs, outputs=predictions)
-
         model.compile(optimizer=self.optimizer, loss=self.loss)
-
         self.model = model
+        print("ZhangCharCNN model built: ")
+        self.model.summary()
 
     def train(self, training_inputs, training_labels,
               validation_inputs, validation_labels,
-              epochs, batch_size):
+              epochs, batch_size, checkpoint_every=100):
         """
         Training function
 
@@ -91,14 +89,24 @@ class CharCNN(object):
             validation_labels (numpy.ndarray): Validation set labels
             epochs (int): Number of training epochs
             batch_size (int): Batch size
+            checkpoint_every (int): Interval for logging to Tensorboard
 
         Returns: None
 
         """
+        # Create callbacks
+        tensorboard = TensorBoard(log_dir='./logs', histogram_freq=checkpoint_every, batch_size=batch_size,
+                                  write_graph=False, write_grads=True, write_images=False,
+                                  embeddings_freq=checkpoint_every,
+                                  embeddings_layer_names=None)
+        # Start training
+        print("Training ZhangCharCNN model: ")
         self.model.fit(training_inputs, training_labels,
                        validation_data=(validation_inputs, validation_labels),
                        epochs=epochs,
-                       batch_size=batch_size)
+                       batch_size=batch_size,
+                       verbose=2,
+                       callbacks=[tensorboard])
 
     def test(self, testing_inputs, testing_labels, batch_size):
         """
@@ -112,4 +120,6 @@ class CharCNN(object):
         Returns: None
 
         """
+        # Evaluate inputs
         self.model.evaluate(testing_inputs, testing_labels, batch_size=batch_size, verbose=1)
+        # self.model.predict(testing_inputs, batch_size=batch_size, verbose=1)
