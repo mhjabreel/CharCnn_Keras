@@ -7,7 +7,7 @@ from keras.layers import AlphaDropout
 from keras.callbacks import TensorBoard
 
 
-class KimCharCNN(object):
+class CharCNNKim(object):
     """
     Class to implement the Character Level Convolutional Neural Network (aka Time-delay Neural Network)
     as described in Kim et al., 2015 (https://arxiv.org/abs/1508.06615)
@@ -74,7 +74,7 @@ class KimCharCNN(object):
         model = Model(inputs=inputs, outputs=predictions)
         model.compile(optimizer=self.optimizer, loss=self.loss)
         self.model = model
-        print("KimCharCNN model built: ")
+        print("CharCNNKim model built: ")
         self.model.summary()
 
     def train(self, training_inputs, training_labels,
@@ -101,7 +101,7 @@ class KimCharCNN(object):
                                   embeddings_freq=checkpoint_every,
                                   embeddings_layer_names=None)
         # Start training
-        print("Training KimCharCNN model: ")
+        print("Training CharCNNKim model: ")
         self.model.fit(training_inputs, training_labels,
                        validation_data=(validation_inputs, validation_labels),
                        epochs=epochs,

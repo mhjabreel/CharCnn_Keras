@@ -59,7 +59,7 @@ class ZhangCharCNNConfig(object):
     loss = 'categorical_crossentropy'
 
     def __init__(self):
-        print("ZhangCharCNN Configurations loaded")
+        print("CharCNNZhang Configurations loaded")
 
 
 class KimCharCNNConfig(object):
@@ -85,4 +85,4 @@ class KimCharCNNConfig(object):
     loss = 'categorical_crossentropy'
 
     def __init__(self):
-        print("KimCharCNN Configurations loaded")
+        print("CharCNNKim Configurations loaded")

@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-from models.zhang_char_cnn import ZhangCharCNN
-from models.kim_char_cnn import KimCharCNN
+from models.char_cnn_zhang import CharCNNZhang
+from models.char_cnn_kim import CharCNNKim
 
 from data_utils import Data
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
     # Load model configurations and build model
     if FLAGS.model == "zhang":
         model_config = ZhangCharCNNConfig()
-        model = ZhangCharCNN(input_size=data_config.input_size,
+        model = CharCNNZhang(input_size=data_config.input_size,
                              alphabet_size=data_config.alphabet_size,
                              embedding_size=model_config.embedding_size,
                              conv_layers=model_config.conv_layers,
@@ -49,7 +49,7 @@ if __name__ == "__main__":
                              loss=model_config.loss)
     elif FLAGS.model == "kim":
         model_config = KimCharCNNConfig()
-        model = KimCharCNN(input_size=data_config.input_size,
+        model = CharCNNKim(input_size=data_config.input_size,
                            alphabet_size=data_config.alphabet_size,
                            embedding_size=model_config.embedding_size,
                            conv_layers=model_config.conv_layers,

@@ -8,7 +8,7 @@ from keras.layers import Dropout
 from keras.callbacks import TensorBoard
 
 
-class ZhangCharCNN(object):
+class CharCNNZhang(object):
     """
     Class to implement the Character Level Convolutional Neural Network for Text Classification,
     as described in Zhang et al., 2015 (http://arxiv.org/abs/1509.01626)
@@ -73,7 +73,7 @@ class ZhangCharCNN(object):
         model = Model(inputs=inputs, outputs=predictions)
         model.compile(optimizer=self.optimizer, loss=self.loss)
         self.model = model
-        print("ZhangCharCNN model built: ")
+        print("CharCNNZhang model built: ")
         self.model.summary()
 
     def train(self, training_inputs, training_labels,
@@ -100,7 +100,7 @@ class ZhangCharCNN(object):
                                   embeddings_freq=checkpoint_every,
                                   embeddings_layer_names=None)
         # Start training
-        print("Training ZhangCharCNN model: ")
+        print("Training CharCNNZhang model: ")
         self.model.fit(training_inputs, training_labels,
                        validation_data=(validation_inputs, validation_labels),
                        epochs=epochs,
