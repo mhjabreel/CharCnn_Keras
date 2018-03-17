@@ -9,7 +9,7 @@ class Data(object):
     """
     def __init__(self, data_source,
                  alphabet="abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}",
-                 input_size=1014, batch_size=128, no_of_classes=4):
+                 input_size=1014, num_of_classes=4):
         """
         Initialization of a Data object.
 
@@ -17,17 +17,15 @@ class Data(object):
             data_source (str): Raw data file path
             alphabet (str): Alphabet of characters to index
             input_size (int): Size of input features
-            batch_size (int): Batch size
-            no_of_classes (int): Number of classes in data
+            num_of_classes (int): Number of classes in data
         """
         self.alphabet = alphabet
         self.alphabet_size = len(self.alphabet)
         self.dict = {}  # Maps each character to an integer
-        self.no_of_classes = no_of_classes
+        self.no_of_classes = num_of_classes
         for idx, char in enumerate(self.alphabet):
             self.dict[char] = idx + 1
         self.length = input_size
-        self.batch_size = batch_size
         self.data_source = data_source
 
     def load_data(self):

@@ -16,7 +16,7 @@ Kim's CharCNN (a standard time-delay neural network) was originally part of an e
 $ pip install -r requirements.txt
 ```
 
-2. Specify the training and testing data sources and model hyperparameters in the `config.py` file.
+2. Specify the training and testing data sources and model hyperparameters in the `config.json` file.
 
 3. Run the main.py file as below:
 

@@ -59,7 +59,7 @@ class CharCNNZhang(object):
         for cl in self.conv_layers:
             x = Convolution1D(cl[0], cl[1])(x)
             x = ThresholdedReLU(self.threshold)(x)
-            if not cl[2] is None:
+            if cl[2] != -1:
                 x = MaxPooling1D(cl[2])(x)
         x = Flatten()(x)
         # Fully connected layers
