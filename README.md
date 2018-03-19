@@ -1,24 +1,31 @@
-# CharCnn_Keras
+# Character Level CNNs in Keras
 
+This repository contains Keras implementations for two Character-level Convolutional Neural Networks for text classification on AG's News Topic Classification Dataset.
 
-![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+The following models have been implemented:
+ 1. Xiang Zhang, Junbo Zhao, Yann LeCun. [Character-level Convolutional Networks for Text Classification](http://arxiv.org/abs/1509.01626). NIPS 2015
+ 2. Yoon Kim, Yacine Jernite, David Sontag, Alexander M. Rush. [Character-Aware Neural Language Models](https://arxiv.org/abs/1508.06615). AAAI 2016
 
-This repository contains my implementation using Keras for text classification from character-level using convolutional networks. It can be used to reproduce the results in the following article:
+Kim's CharCNN (a standard time-delay neural network) was originally part of an end-to-end trained pipeline for language modelling, but has been adapted for text classification.
 
-Xiang Zhang, Junbo Zhao, Yann LeCun. [Character-level Convolutional Networks for Text Classification](http://arxiv.org/abs/1509.01626). Advances in Neural Information Processing Systems 28 (NIPS 2015)
+## Usage
 
-![Alt text](ccnn.png?raw=true "The model")
+1. Install dependencies:
 
-## How to use
-First, specify the training and testing data sources in the config.py file.
-
-Then, run the training.py file as below:
-```sh
-$ python char_cnn.py
+```
+$ pip install -r requirements.txt
 ```
 
-## License
+2. Specify the training and testing data sources and model hyperparameters in the `config.json` file.
 
-Copyright (c) 2016 Mohammed Jabreel
+3. Run the main.py file as below:
 
-The source code is distributed under the MIT license.
+```sh
+$ python main.py --model [model_name]
+```
+
+Replace `[model_name]` with either `zhang` or `kim` to run the desired model.
+
+## Results
+
+Coming soon.
