@@ -6,7 +6,7 @@ The following models have been implemented:
  1. Xiang Zhang, Junbo Zhao, Yann LeCun. [Character-level Convolutional Networks for Text Classification](http://arxiv.org/abs/1509.01626). NIPS 2015
  2. Yoon Kim, Yacine Jernite, David Sontag, Alexander M. Rush. [Character-Aware Neural Language Models](https://arxiv.org/abs/1508.06615). AAAI 2016
 
-Kim's CharCNN (a standard time-delay neural network) was originally part of an end-to-end trained pipeline for language modelling, but has been adapted for text classification.
+Kim's CharCNN was originally part of an end-to-end trained pipeline for language modelling, but has been adapted for text classification.
 
 ## Usage
 
