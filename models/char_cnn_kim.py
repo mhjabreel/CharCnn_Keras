@@ -9,10 +9,11 @@ from keras.callbacks import TensorBoard
 
 class CharCNNKim(object):
     """
-    Class to implement the Character Level Convolutional Neural Network (aka Time-delay Neural Network)
+    Class to implement the Character Level Convolutional Neural Network
     as described in Kim et al., 2015 (https://arxiv.org/abs/1508.06615)
 
-    Their model has been adapted to perform text classification instead of language modelling.
+    Their model has been adapted to perform text classification instead of language modelling
+    by replacing subsequent recurrent layers with dense layer(s) to perform softmax over classes.
     """
     def __init__(self, input_size, alphabet_size, embedding_size,
                  conv_layers, fully_connected_layers,
