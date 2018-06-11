@@ -1,6 +1,6 @@
 import pandas as pd
 
-dictCSV=pd.read_csv("character_dictionary.csv", encoding="utf-8")
+dictCSV=pd.read_csv("data/character_dictionary.csv", encoding="utf-8")
 pingyum = {}
 
 for i, x in enumerate(dictCSV["x"]):
