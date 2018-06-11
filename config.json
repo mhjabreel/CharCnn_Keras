@@ -1,12 +1,12 @@
 {
   "notes": "default",
   "data": {
-    "alphabet": "abcdefghijklmnopqrstuvwxyz0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}",
-    "alphabet_size": 69,
+    "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]{}",
+    "alphabet_size": 95,
     "input_size": 1014,
-    "num_of_classes": 4,
-    "training_data_source": "data/ag_news_csv/train.csv",
-    "validation_data_source": "data/ag_news_csv/test.csv"
+    "num_of_classes": 3,
+    "training_data_source": "data/Openrice.json",
+    "validation_data_source": "data/Openrice.json"
   },
   "model": "char_cnn_zhang",
   "training": {
