@@ -1,7 +1,8 @@
 import numpy as np
 import re
 import csv
-
+import json
+import yueping as yp
 
 class Data(object):
     """
@@ -36,13 +37,17 @@ class Data(object):
 
         """
         data = []
-        with open(self.data_source, 'r', encoding='utf-8') as f:
-            rdr = csv.reader(f, delimiter=',', quotechar='"')
-            for row in rdr:
-                txt = ""
-                for s in row[1:]:
-                    txt = txt + " " + re.sub("^\s*(.-)\s*$", "%1", s).replace("\\n", "\n")
-                data.append((int(row[0]), txt))  # format: (label, text)
+        for line in open(self.data_source, 'r', encoding="utf8"):
+            item = json.loads(line)["result"]
+            txt=item["full_description"]
+            if (item["sentiment"]=="cry"):
+                sentiment=1
+            if (item["sentiment"]=="ok"):
+                sentiment=2
+            if (item["sentiment"]=="smile"):
+                sentiment=3
+            
+            data.append((sentiment, yp.romanize(txt)))  # format: (label, text)
         self.data = np.array(data)
         print("Data loaded from " + self.data_source)
 
