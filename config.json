@@ -15,6 +15,54 @@
     "evaluate_every": 100,
     "checkpoint_every": 100
   },
+  "char_tcn": {
+    "embedding_size": 128,
+    "conv_layers": [
+      [
+        256,
+        5
+      ],
+      [
+        256,
+        5
+      ]
+    ],
+    "fully_connected_layers": [
+      1024
+    ],
+    "dropout_p": 0.2,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy"
+  },
+  "char_cnn_kim": {
+    "embedding_size": 128,
+    "conv_layers": [
+      [
+        256,
+        10
+      ],
+      [
+        256,
+        7
+      ],
+      [
+        256,
+        5
+      ],
+      [
+        256,
+        3
+      ]
+    ],
+    "fully_connected_layers": [
+      1024,
+      1024
+    ],
+    "threshold": 1e-6,
+    "dropout_p": 0.1,
+    "optimizer": "adam",
+    "loss": "categorical_crossentropy"
+  },
   "char_cnn_zhang": {
     "embedding_size": 128,
     "conv_layers": [
@@ -55,35 +103,6 @@
     ],
     "threshold": 1e-6,
     "dropout_p": 0.5,
-    "optimizer": "adam",
-    "loss": "categorical_crossentropy"
-  },
-  "char_cnn_kim": {
-    "embedding_size": 128,
-    "conv_layers": [
-      [
-        256,
-        10
-      ],
-      [
-        256,
-        7
-      ],
-      [
-        256,
-        5
-      ],
-      [
-        256,
-        3
-      ]
-    ],
-    "fully_connected_layers": [
-      1024,
-      1024
-    ],
-    "threshold": 1e-6,
-    "dropout_p": 0.1,
     "optimizer": "adam",
     "loss": "categorical_crossentropy"
   }
