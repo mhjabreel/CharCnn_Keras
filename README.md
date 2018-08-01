@@ -1,6 +1,6 @@
 # Character Level CNNs in Keras
 
-This repository contains Keras implementations for two Character-level Convolutional Neural Networks for text classification on AG's News Topic Classification Dataset.
+This repository contains Keras implementations for Character-level Convolutional Neural Networks for text classification on AG's News Topic Classification Dataset.
 
 The following models have been implemented:
  1. Xiang Zhang, Junbo Zhao, Yann LeCun. [Character-level Convolutional Networks for Text Classification](http://arxiv.org/abs/1509.01626). NIPS 2015
