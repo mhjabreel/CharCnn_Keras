@@ -59,13 +59,14 @@ class CharTCN(object):
         for cl in self.conv_layers:
             res_in = x
             for _ in range(2):
+                # NOTE: The paper used padding='causal'
                 x = Convolution1D(cl[0], cl[1], padding='same', dilation_rate=d, activation='linear')(x)
                 x = BatchNormalization()(x)
                 x = Activation('relu')(x)
                 x = SpatialDropout1D(self.dropout_p)(x)
                 d *= 2  # Update dilation factor
             # Residual connection
-            res_in = Convolution1D(filters=filters, kernel_size=1, padding='same', activation='linear')(res_in)
+            res_in = Convolution1D(filters=cl[0], kernel_size=1, padding='same', activation='linear')(res_in)
             x = Add()([res_in, x])
         x = Flatten()(x)
         # Fully connected layers
@@ -79,7 +80,7 @@ class CharTCN(object):
         model = Model(inputs=inputs, outputs=predictions)
         model.compile(optimizer=self.optimizer, loss=self.loss)
         self.model = model
-        print("CharCNNZhang model built: ")
+        print("CharTCN model built: ")
         self.model.summary()
 
     def train(self, training_inputs, training_labels,
@@ -106,7 +107,7 @@ class CharTCN(object):
                                   embeddings_freq=checkpoint_every,
                                   embeddings_layer_names=None)
         # Start training
-        print("Training CharCNNZhang model: ")
+        print("Training CharTCN model: ")
         self.model.fit(training_inputs, training_labels,
                        validation_data=(validation_inputs, validation_labels),
                        epochs=epochs,
