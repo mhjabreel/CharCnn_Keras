@@ -38,6 +38,16 @@ if __name__ == "__main__":
                            dropout_p=config["model"]["dropout_p"],
                            optimizer=config["model"]["optimizer"],
                            loss=config["model"]["loss"])
+    elif FLAGS.model == 'tcn':
+      model = CharTCN(input_size=config["data"]["input_size"],
+                      alphabet_size=config["data"]["alphabet_size"],
+                      embedding_size=config["model"]["embedding_size"],
+                      conv_layers=config["model"]["conv_layers"],
+                      fully_connected_layers=config["model"]["fully_connected_layers"],
+                      num_of_classes=config["data"]["num_of_classes"],
+                      dropout_p=config["model"]["dropout_p"],
+                      optimizer=config["model"]["optimizer"],
+                      loss=config["model"]["loss"])
     else:
         model = CharCNNZhang(input_size=config["data"]["input_size"],
                              alphabet_size=config["data"]["alphabet_size"],
