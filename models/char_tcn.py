@@ -7,7 +7,7 @@ from keras.layers import BatchNormalization
 from keras.layers import SpatialDropout1D
 from keras.layers import Dropout
 from keras.callbacks import TensorBoard
-
+from keras.layers.merge import Add
 
 class CharTCN(object):
     """
